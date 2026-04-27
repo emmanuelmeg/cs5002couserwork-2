@@ -38,12 +38,12 @@ public class UrbanPulsegui implements ActionListener
     {
          this.users =users;
          this.bookingService = bookingService;
-        frame();
+        createFrame();
 
 
     }
-    // creates the main frame
-    private void frame()
+    // creates the frame for the gui
+    private void createFrame()
     {
         frame = new JFrame("UrbanPulse Leisure Centre");
 
@@ -51,6 +51,7 @@ public class UrbanPulsegui implements ActionListener
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900,500);
         frame.pack();
+
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("members", Memberspanle());
 
@@ -76,7 +77,7 @@ public class UrbanPulsegui implements ActionListener
     {
         JPanel mainPanel = new JPanel(new BorderLayout(10,10));
 
-        JPanel formpanel = new JPanel(new GridLayout(0,4,10,10));
+        JPanel memberspanel = new JPanel(new GridLayout(0,4,10,10));
         JLabel First_name = new JLabel("First name");
         first_name =new JTextField(15);
 
@@ -104,30 +105,30 @@ public class UrbanPulsegui implements ActionListener
 
 
 
-        formpanel.add(First_name);
-        formpanel.add(first_name);
-        formpanel.add(last_name);
-        formpanel.add(Last_name);
-        formpanel.add(Email);
-        formpanel.add(email);
-        formpanel.add(tiers);
-        formpanel.add(MembershipsCombobox);
-        formpanel.add(date);
-        formpanel.add(dateText);
-        formpanel.add(ID);
-        formpanel.add(M_ID);
+        memberspanel.add(First_name);
+        memberspanel.add(first_name);
+        memberspanel.add(last_name);
+        memberspanel.add(Last_name);
+        memberspanel.add(Email);
+        memberspanel.add(email);
+        memberspanel.add(tiers);
+        memberspanel.add(MembershipsCombobox);
+        memberspanel.add(date);
+        memberspanel.add(dateText);
+        memberspanel.add(ID);
+        memberspanel.add(M_ID);
 
-        formpanel.add(new JLabel("PITCH ID"));
-        formpanel.add(pitchText);
-        formpanel.add(new JLabel("LOCATION"));
-        formpanel.add(siteText);
-        formpanel.add(new JLabel("SLOT"));
-        formpanel.add(slotText);
-        formpanel.add(new JLabel("BOOKING ID"));
-        formpanel.add(bookingIDText);
+        memberspanel.add(new JLabel("PITCH ID"));
+        memberspanel.add(pitchText);
+        memberspanel.add(new JLabel("LOCATION"));
+        memberspanel.add(siteText);
+        memberspanel.add(new JLabel("SLOT"));
+        memberspanel.add(slotText);
+        memberspanel.add(new JLabel("BOOKING ID"));
+        memberspanel.add(bookingIDText);
 
 
-        JPanel buttonPanel = new JPanel(new GridLayout(0,3,10,10));
+        JPanel button = new JPanel(new GridLayout(0,3,10,10));
 
         JButton ApplyButton = new JButton("apply Membership");
         JButton renewButton = new JButton( "Renew membership");
@@ -138,13 +139,14 @@ public class UrbanPulsegui implements ActionListener
         JButton displayButton = new JButton("display members details");
 
 
-        buttonPanel.add(ApplyButton);
-        buttonPanel.add(renewButton);
-        buttonPanel.add(updateButton);
-        buttonPanel.add(CheckButton);
-        buttonPanel.add(BookButton);
-        buttonPanel.add(cancelButton);
-        buttonPanel.add(displayButton);
+        button.add(ApplyButton);
+        button.add(renewButton);
+        button.add(updateButton);
+        button.add(CheckButton);
+        button.add(BookButton);
+        button.add(cancelButton);
+        button.add(displayButton);
+
 
         ApplyButton.addActionListener(this);
         renewButton.addActionListener(this);
@@ -155,12 +157,12 @@ public class UrbanPulsegui implements ActionListener
         displayButton.addActionListener(this);
 
 
-        mainPanel.add(formpanel,BorderLayout.CENTER);
-        mainPanel.add(buttonPanel,BorderLayout.SOUTH);
+        mainPanel.add(memberspanel,BorderLayout.CENTER);
+        mainPanel.add(button,BorderLayout.SOUTH);
         
         return mainPanel;
     }
-    // applies for a new memberships
+    // applies for a  memberships
     public void addmember()
     {
 
@@ -301,7 +303,7 @@ public class UrbanPulsegui implements ActionListener
 
 
     }
-    // displays member details
+    // displays  details of members
     public  void display()
     {
         String membersID = M_ID.getText().trim();
@@ -346,6 +348,7 @@ public class UrbanPulsegui implements ActionListener
 
         JOptionPane.showMessageDialog(frame,report,"Operations Report",JOptionPane.INFORMATION_MESSAGE);
     }
+    
     public  void actionPerformed(ActionEvent event)
     {
         String command = event.getActionCommand();
@@ -390,28 +393,28 @@ public class UrbanPulsegui implements ActionListener
     }
     // creates the management panel
     private  JPanel Staffpanel()
-    {JPanel spanel = new JPanel(new GridLayout(0,2,8,8));
+    {JPanel staffPanel = new JPanel(new GridLayout(0,2,8,8));
 
          reasonText = new JTextField();
 
         JButton refundButton = new JButton("Refund");
         JButton auditButton = new JButton("view audit");
 
-        spanel.add(new JLabel("Booking ID"));
-        spanel.add(bookingIDText);
+        staffPanel.add(new JLabel("Booking ID"));
+        staffPanel.add(bookingIDText);
 
-        spanel.add(new JLabel("reasons"));
-        spanel.add(reasonText);
-        spanel.add(refundButton);
-        spanel.add(auditButton);
+        staffPanel.add(new JLabel("reasons"));
+        staffPanel.add(reasonText);
+        staffPanel.add(refundButton);
+        staffPanel.add(auditButton);
 
 
-        return spanel;
+        return staffPanel;
     }
     // Creates the management panel
     private  JPanel createManagementPanel()
     {
-        JPanel mpanel = new JPanel(new GridLayout(0,2,8,8));
+        JPanel managerPanel = new JPanel(new GridLayout(0,2,8,8));
 
          fromField =new JTextField();
          ToField = new JTextField();
@@ -422,15 +425,15 @@ public class UrbanPulsegui implements ActionListener
         MaintenanceButton.addActionListener(this);
         reportButton.addActionListener(this);
 
-        mpanel.add(new JLabel("PItch ID:"));
-        mpanel.add(pitchText);
-        mpanel.add(new JLabel("From (yyyy-MM-dd):"));
-        mpanel.add(fromField);
-        mpanel.add(new JLabel("To (yyyy-MM-dd):"));
-        mpanel.add(ToField);
-        mpanel.add(MaintenanceButton);
-        mpanel.add(reportButton);
-      return mpanel;
+        managerPanel.add(new JLabel("PItch ID:"));
+        managerPanel.add(pitchText);
+        managerPanel.add(new JLabel("From (yyyy-MM-dd):"));
+        managerPanel.add(fromField);
+        managerPanel.add(new JLabel("To (yyyy-MM-dd):"));
+        managerPanel.add(ToField);
+        managerPanel.add(MaintenanceButton);
+        managerPanel.add(reportButton);
+      return managerPanel;
     }
 
 
